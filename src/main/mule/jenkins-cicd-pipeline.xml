@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="e533f2d4-ec4e-482a-9f0b-b6e0d1c436b2" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="jenkins-cicd-pipeline-flow" doc:id="4fb07161-412c-427f-b603-0ced367de140" >
+		<http:listener doc:name="Listener" doc:id="246972fe-30f4-41a0-a71b-bd72fc380bb5" config-ref="HTTP_Listener_config" path="/jenkins"/>
+		<set-payload value='#["This is Jenkins CI/CD pipeline"]' doc:name="Set Payload" doc:id="682476e7-0f6c-485d-81fb-9950325d94a9" />
+		<logger level="INFO" doc:name="Logger" doc:id="16ced186-0f75-428b-9747-d72e20ba8267" message="#[payload]"/>
+	</flow>
+</mule>
