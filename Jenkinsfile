@@ -19,11 +19,6 @@ pipeline {
             }
         }
         
-        stage('Ok') {
-            steps {
-                echo "Ok"
-            }
-        }
     }
     
     post {
